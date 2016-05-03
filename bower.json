@@ -1,0 +1,24 @@
+{
+  "name": "09-WeatherApp",
+  "authors": [
+    "Gloria Jun <jiminisme@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.5",
+    "jquery": "^2.2.3",
+    "toastr": "^2.1.2",
+    "moment": "^2.13.0"
+  }
+}

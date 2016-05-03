@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="WeatherApp">
+
+<head >
+	<meta charset="UTF-8">
+	<title>Weather App</title>
+	<link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+<!-- <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body ng-controller="WeatherAppController as vm">
+	
+<!-- heading box -->
+	<div class="container">
+		<div class="jumbotron" id="id1">
+			<h1>Origin Weather Application</h1><br/>
+			<h4>Always know if you'll need an umbrella!</h4>
+		</div>
+	</div> <br/>
+
+<!-- city search -->
+	<div class="container">
+<!-- 		button group -->
+			<div class="btn-group" role="btn" ng-repeat="city in vm.cities">
+				<button type="button" class="btn btn-primary" ng-click="vm.getMyWeather(city.name)">{{city.name}}</button>
+			</div><br/>
+<!-- 			search box -->
+			<form>
+				<div class="input-group text-center">
+					<input type="text" class="form-control" placeholder="City Name" ng-model="city.name" >
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit" ng-click="vm.getMyWeather(city.name)">Go!</button>
+					</span>
+				</div>
+			</form>
+	</div><br/>
+
+	<div class="container">
+<!-- 	city weather information -->
+		<div class="col-md-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">City Information</div>
+				<div class="panel-body">
+					<div class="text-center">
+						<h2>
+							<img ng-src="images/{{vm.Weather.weather[0].icon}}.png"> 
+							<strong>{{vm.Weather.name}}</strong>
+						</h2>
+						Lat/Long: [ {{vm.Weather.coord.lat}}, {{vm.Weather.coord.lon}} ]
+					</div><hr/>
+					<div class="row"><strong>
+						<div class="col-xs-4 text-center">
+							Temperature (F):<br/>
+							<span class="results">{{vm.Weather.main.temp}}</span>
+						</div>
+						<div class="col-xs-4 text-center">
+							Pressure: <br/>
+							<span class="results">{{vm.Weather.main.pressure}}</span>
+						</div>
+						<div class="col-xs-4 text-center">
+							Humidity: <br/>
+							<span class="results">{{vm.Weather.main.humidity}}</span>
+						</div>
+					</div><br/>
+					<div class="row">
+						<div class="col-xs-4 text-center">
+							Lowest Temp (F): <br/>
+							<span class="results">{{vm.Weather.main.temp_min}}</span>
+						</div>
+						<div class="col-xs-4 text-center">
+							Highest Temp (F): <br/>
+							<span class="results">{{vm.Weather.main.temp_max}}</span>
+						</div>
+						<div class="col-xs-4 text-center">
+							Wind Speed: <br/>
+							<span class="results">{{vm.Weather.wind.speed}}</span>
+						</strong></div>
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- 	search history -->
+		<div class="col-md-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">Search History</div>
+				<div class="panel-body" id="searchPanel" >
+					<table class="table table-striped">
+						<tbody>
+							<tr class="row" ng-repeat="search in vm.searchHistory | orderBy:'-searchTime'">
+								<td class="text-left">{{search.name}}</td>
+								<td class="text-right">{{search.searchTime}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- bower:js -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/toastr/toastr.js"></script>
+	<script src="bower_components/moment/moment.js"></script>
+	<!-- endbower -->
+	<!-- inject:js -->
+	<script src="/app/app.js"></script>
+	<script src="/app/weatherApp.controller.js"></script>
+	<script src="/app/weatherApp.factory.js"></script>
+	<!-- endinject -->
+</body>
+</html>

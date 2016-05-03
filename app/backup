@@ -1,0 +1,59 @@
+(function() {
+    'use strict';
+
+    angular
+        .module('WeatherApp')
+        .controller('WeatherAppController', WeatherAppController);
+
+    WeatherAppController.$inject = ['$scope', '$log', 'WeatherAppFactory'];
+
+    /* @ngInject */
+    function WeatherAppController($scope, $log, WeatherAppFactory) {
+        var vm = this;
+        vm.searchHistory = [];
+        
+        vm.city = {
+            'name': "San Diego"
+        };
+        console.log(vm.city.name);
+
+
+        /*$scope.updateCity = function(newCity) {
+            $scope.city.name = newCity;
+            activate();
+            console.log($scope.searchHistory);
+        }*/
+        
+
+        ////////////////
+
+        function getWeather() {
+            
+           WeatherAppFactory.getWeather(vm.city.name).then(
+                function(response) {
+                    vm.Weather = response.data;
+                },
+                function(error) {
+                    $log.error('failure getting data', error)
+                });
+            vm.city.searchTime = moment().format('YYYY-MM-DD h:mm:ss a');
+            vm.searchHistory.push(vm.city);
+            vm.city = {};
+           
+        }
+
+
+        vm.getMyWeather = getWeather();
+
+        function activate() {
+/*debugger;*/
+            vm.getMyWeather();
+            
+        }
+
+        
+        activate();
+
+        
+    }
+})();
