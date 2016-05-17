@@ -15,16 +15,13 @@
         return service;
 
         function getWeather(city) {
-            var cityName = city;
-            var defer = $q.defer();
-            var url = 'http://api.openweathermap.org/data/2.5/weather';
-            console.log(city);
+            var defer = $q.defer();    
 
             $http({
                method: 'GET',
-               url: url,
+               url: 'http://api.openweathermap.org/data/2.5/weather',
                params: {
-                q: cityName,
+                q: city,
                 mode: 'json',
                 units: 'imperial',
                 appid: '7a04e5f260046912d7a7857eb0bd2b66'

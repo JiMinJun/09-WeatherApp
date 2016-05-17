@@ -1,0 +1,35 @@
+{
+  "name": "09-weatherapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^4.0.0",
+    "gulp-inject": "^4.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-open": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "wiredep": "^4.0.0"
+  },
+
+
+  "devDependencies": { "jasmine-core": "^2.3.4", 
+    "karma": "^0.12.31", 
+    "karma-chrome-launcher": "^0.1.12", 
+    "karma-jasmine": "^0.3.5" },
+    
+  "scripts": { "test": "karma start karma.conf.js" },
+
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JiMinJun/09-WeatherApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JiMinJun/09-WeatherApp/issues"
+  },
+  "homepage": "https://github.com/JiMinJun/09-WeatherApp#readme"
+}

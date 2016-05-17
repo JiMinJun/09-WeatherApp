@@ -11,7 +11,7 @@
     function WeatherAppController($log, WeatherAppFactory) {
         var vm = this;
         vm.searchHistory = [];
-        vm.getMyWeather = getWeather;
+/*        vm.getMyWeather = getWeather;*/
         vm.cities = [
             {
                 'name': "San Diego"
@@ -29,25 +29,27 @@
                 'name': "Tokyo"
             }];
         
-        vm.city = vm.cities[0];
+        
 
 
-        function getWeather(city) {
-            vm.city.name = city;
-           WeatherAppFactory.getWeather(vm.city.name).then(
+        vm.getMyWeather = function (city) {
+           WeatherAppFactory.getWeather(city).then(
                 function(response) {
                     vm.Weather = response.data;
                 },
                 function(error) {
+                    vm.error = 'Failure getting Data';
                     $log.error('failure getting data', error)
                 });
+            vm.city = {name: city};
             vm.city.searchTime = moment().format('YYYY-MM-DD h:mm:ss a');
             vm.searchHistory.push(vm.city);
             vm.city = {};
         }
 
         function activate() {
-            vm.getMyWeather(vm.city.name);         
+            //getsWeather for first item cities array (san diego)
+            vm.getMyWeather(vm.cities[0].name);         
         }
 
         activate();
